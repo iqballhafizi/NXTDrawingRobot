@@ -1,6 +1,7 @@
 package de.tuhh.diss.plotbot;
 
 import de.tuhh.diss.plotbot.shape.Ship;
+import de.tuhh.diss.plotbot.shape.Triangle;
 import de.tuhh.diss.plotbot.shape.Calibration;
 import de.tuhh.diss.plotbot.shape.Plottable;
 import lejos.nxt.Button;
@@ -32,10 +33,10 @@ public class MainMenu {
 			toDraw = new Calibration();
 			//Think about what you have to do to start the drawing routine
 		}	
-		/*if (selection == 1) {
+		if (selection == 1) {
 			toDraw = new Triangle();
 			//Think about what you have to do to start the drawing routine
-		}	*/
+		}	
 		if (selection == 2) {
 			toDraw = new Ship();
 			//Think about what you have to do to start the drawing routine
