@@ -25,21 +25,25 @@ public class MainMenu {
 		do {
 			selection = menu.select();
 		}while(selection < 0);
-
-		while(Button.ENTER.isDown()) {
-		}
 		Plottable toDraw = null;
 		if (selection == 0) {
 			toDraw = new Calibration();
+			toDraw.plot();
+			
 			//Think about what you have to do to start the drawing routine
 		}	
-		if (selection == 1) {
+		else if (selection == 1) {
 			toDraw = new Triangle();
 			//Think about what you have to do to start the drawing routine
 		}	
-		if (selection == 2) {
+		else if (selection == 2) {
 			toDraw = new Ship();
 			//Think about what you have to do to start the drawing routine
 		}	
+		else{
+			LCD.drawString("Else!!!!", 0, 1);
+			while(Button.ENTER.isDown()) {
+			}
+		}
 	}
 }
