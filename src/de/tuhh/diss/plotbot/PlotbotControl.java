@@ -21,6 +21,7 @@ public class PlotbotControl {
 
 	static final int DEFAULT_SPEED = 400;
 	static final int UPPER_DRAWING_BOUNDARY = 230;
+	static final int DISTANCE_PEN_TO_TABLE = 360;
 
 	public PlotbotControl() {
 
@@ -40,6 +41,55 @@ public class PlotbotControl {
 			// ((720*2*Math.PI*Coord.DIST_ARM_TO_PEN*Math.sin(arg0))/(Coord.SWIVEL_GEAR_RATIO*360)));
 		}
 
+	}
+
+	public int getSwivelAngle() {
+		return -swivelMotor.getPosition();
+	}
+
+	public void wheelsForward(int speed) {
+		wheelsMotor.setSpeed(speed);
+		if (wheelsMotor.isMoving() == false) {
+			wheelsMotor.forward();
+		}
+
+	}
+
+	public void wheelsBackward(int speed) {
+		wheelsMotor.setSpeed(speed);
+		if (wheelsMotor.isMoving() == false) {
+			wheelsMotor.backward();
+		}
+	}
+
+	public void swivelForward(int speed) {
+		swivelMotor.setSpeed(speed);
+		if (swivelMotor.isMoving() == false) {
+			swivelMotor.forward();
+		}
+	}
+
+	public void swivelBackward(int speed) {
+		swivelMotor.setSpeed(speed);
+		if (swivelMotor.isMoving() == false) {
+			swivelMotor.backward();
+		}
+	}
+
+	public void stopSwivel() {
+		swivelMotor.stop();
+	}
+
+	public void stopWheels() {
+		wheelsMotor.stop();
+	}
+
+	public void penDown() {
+		penMotor.rotate(DISTANCE_PEN_TO_TABLE);
+	}
+
+	public void penUp() {
+		penMotor.rotate(-DISTANCE_PEN_TO_TABLE);
 	}
 
 	public void initializePlotbot() {

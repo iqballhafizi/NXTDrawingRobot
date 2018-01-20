@@ -11,7 +11,8 @@ public class Coord {
 	private int xCoord, yCoord;
 	private int swivelMotorAngle;
 	private int wheelsMotorAngle;
-	
+	private int swivelAngle;
+	private int wheelsAngle;
 
 	public Coord() {
 
@@ -38,12 +39,16 @@ public class Coord {
 	 * @param y
 	 *            Position in y plane
 	 */
-	public void xyToAngle(double x, int y, int currentPosition) {
+	public void xyToAngle(double x, int y, int currentPositionY) {
 		swivelMotorAngle = (int) -(SWIVEL_GEAR_RATIO * Math.toDegrees((Math.asin((x / DIST_ARM_TO_PEN)))));
 
 		wheelsMotorAngle = (int) (((360 * WHEEL_GEAR_RATIO) / (WHEEL_DIAMETER * Math.PI))
-				* (y + DIST_ARM_TO_PEN - ((currentPosition * 56 * Math.PI) / (5 * 360))
+				* (y + DIST_ARM_TO_PEN - ((currentPositionY * WHEEL_DIAMETER * Math.PI) / (WHEEL_GEAR_RATIO * 360))
 						- (DIST_ARM_TO_PEN * (Math.cos(Math.toRadians(-swivelMotorAngle / SWIVEL_GEAR_RATIO))))));
+
+		swivelAngle = (int) -(Math.toDegrees((Math.asin((x / DIST_ARM_TO_PEN)))));
+		wheelsAngle = (int) ((y + DIST_ARM_TO_PEN - ((currentPositionY * 56 * Math.PI) / (5 * 360))
+				- (DIST_ARM_TO_PEN * (Math.cos(Math.toRadians(swivelAngle))))));
 
 	}
 
@@ -61,5 +66,13 @@ public class Coord {
 
 	public int getWheelsMotorAngle() {
 		return wheelsMotorAngle;
+	}
+
+	public int getSwivelAngle() {
+		return swivelAngle;
+	}
+
+	public int getWheelsAngle() {
+		return wheelsAngle;
 	}
 }
