@@ -1,12 +1,12 @@
 package de.tuhh.diss.plotbot;
 
 public class Coord {
-	public static final int WHEEL_DIAMETER = 56;
+	public static final double WHEEL_DIAMETER = 56.0;
 	public static final int WHEEL_GEAR_RATIO = 5;
 	public static final int DIST_ARM_TO_SENSOR = 110;
-	public static final int DIST_ARM_TO_PEN = 80;
-	public static final int SWIVEL_GEAR_RATIO = 84;
-	public static final int SWIVEL_MAX_ANGLE = 60;
+	public static final double DIST_ARM_TO_PEN = 80.0;
+	public static final double SWIVEL_GEAR_RATIO = 84.0;
+	public static final int SWIVEL_MAX_ANGLE = 58;
 	public int pointX, pointY;
 	private int xCoord, yCoord;
 	private int swivelMotorAngle;
@@ -39,19 +39,27 @@ public class Coord {
 	 * @param y
 	 *            Position in y plane
 	 */
-	public void xyToAngle(double x, int y, int currentPositionY) {
-		swivelMotorAngle = (int) -(SWIVEL_GEAR_RATIO * Math.toDegrees((Math.asin((x / DIST_ARM_TO_PEN)))));
+//	public void xyToAngle(double x, int y, int currentPositionY, int currentPositionX) {
+//		swivelMotorAngle = (int) ((currentPositionX*SWIVEL_GEAR_RATIO)-(SWIVEL_GEAR_RATIO * Math.toDegrees((Math.asin((x / DIST_ARM_TO_PEN))))));
+//
+//		wheelsMotorAngle = (int) (((360 * WHEEL_GEAR_RATIO) / (WHEEL_DIAMETER * Math.PI))
+//				* (y + DIST_ARM_TO_PEN - ((currentPositionY * WHEEL_DIAMETER * Math.PI) / (WHEEL_GEAR_RATIO * 360))
+//						- (DIST_ARM_TO_PEN * (Math.cos(Math.toRadians(currentPositionX))))));
+//
+////		swivelAngle = (int) -(Math.toDegrees((Math.asin((x / DIST_ARM_TO_PEN)))));
+////		wheelsAngle = (int) ((y + DIST_ARM_TO_PEN - ((currentPositionY * 56 * Math.PI) / (5 * 360))
+////				- (DIST_ARM_TO_PEN * (Math.cos(Math.toRadians(swivelAngle))))));
+//
+//	}
+	public void xyToAngle(double x, int y,int currentSwivelAngle) {
+		swivelMotorAngle = (int) ((-(SWIVEL_GEAR_RATIO * Math.toDegrees((Math.asin((x / DIST_ARM_TO_PEN)))))));
 
 		wheelsMotorAngle = (int) (((360 * WHEEL_GEAR_RATIO) / (WHEEL_DIAMETER * Math.PI))
-				* (y + DIST_ARM_TO_PEN - ((currentPositionY * WHEEL_DIAMETER * Math.PI) / (WHEEL_GEAR_RATIO * 360))
-						- (DIST_ARM_TO_PEN * (Math.cos(Math.toRadians(-swivelMotorAngle / SWIVEL_GEAR_RATIO))))));
-
-		swivelAngle = (int) -(Math.toDegrees((Math.asin((x / DIST_ARM_TO_PEN)))));
-		wheelsAngle = (int) ((y + DIST_ARM_TO_PEN - ((currentPositionY * 56 * Math.PI) / (5 * 360))
-				- (DIST_ARM_TO_PEN * (Math.cos(Math.toRadians(swivelAngle))))));
+				* (y + DIST_ARM_TO_PEN - (DIST_ARM_TO_PEN * (Math.cos(Math.toRadians(currentSwivelAngle))))));
 
 	}
-
+	
+	
 	public int getxCoord() {
 		return xCoord;
 	}

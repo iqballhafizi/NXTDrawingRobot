@@ -1,9 +1,6 @@
 package de.tuhh.diss.plotbot;
 
 
-import de.tuhh.diss.plotbot.shape.Plottable;
-import lejos.nxt.Button;
-import lejos.nxt.LCD;
 
 public class Plotbot {
 	public static void main(String[] args)

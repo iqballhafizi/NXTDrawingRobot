@@ -1,15 +1,19 @@
 package de.tuhh.diss.plotbot.shape;
 
+import de.tuhh.diss.plotbot.Coord;
 import de.tuhh.diss.plotbot.PlotbotControl;
-import lejos.nxt.Motor;
 
 
 public class Triangle implements Plottable{
+
+	private int width, height;
+	public Triangle(int width,int height){
+		this.width=width;
+		this.height=height;
+	}
 	public void plot(PlotbotControl pc){
-//	public void plot(){
-		Motor.C.setSpeed(720);
-		Motor.C.forward();
-		Motor.C.stop();
-		
+		new Line(new Coord(0,UPPER_DRAWING_BOUNDARY),new Coord(0,-height)).plot(pc);
+		new Line(new Coord(width,0)).plot(pc);
+		new Line(new Coord(-width,height)).plot(pc);
 	}
 }

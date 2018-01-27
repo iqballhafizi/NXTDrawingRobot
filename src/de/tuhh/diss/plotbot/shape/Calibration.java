@@ -1,30 +1,32 @@
 package de.tuhh.diss.plotbot.shape;
 
 import de.tuhh.diss.plotbot.Coord;
-import de.tuhh.diss.plotbot.Line;
 import de.tuhh.diss.plotbot.PlotbotControl;
+import lejos.nxt.Button;
 
 public class Calibration implements Plottable {
 
-	// private LightSensor lightSensor = new LightSensor(SensorPort.S3);
-	// private TouchSensor swivelSensor = new TouchSensor(SensorPort.S1);
-	// private TouchSensor penSensor = new TouchSensor(SensorPort.S2);
-	// private NXTRegulatedMotor wheelsMotor = new
-	// NXTRegulatedMotor(MotorPort.C);
-	// private NXTRegulatedMotor swivelMotor = new
-	// NXTRegulatedMotor(MotorPort.A);
-	// private NXTRegulatedMotor penMotor = new NXTRegulatedMotor(MotorPort.B);
-	private Coord coordStart = new Coord(20, 20);
-	private Coord coordEnd = new Coord(20, 100);
-	private Line line;
+	
 
 	public void plot(PlotbotControl pc) {
 		pc.initializePlotbot();
-
+//		Button.ENTER.waitForPressAndRelease();
+//		pc.goToXy(new Coord(0, 20));
+//		Button.ENTER.waitForPressAndRelease();
+//		pc.goToXy(new Coord(30, 0));
+//		Button.ENTER.waitForPressAndRelease();
+//		pc.goToXy(new Coord(10,0));
+//		Button.ENTER.waitForPressAndRelease();
+//		pc.goToXy(new Coord(-40,-20));
 		// coordStart = new Coord(60, 200);
 		// pc.goToXy(coordStart);
-		line = new Line(coordStart, coordEnd);
-		line.drawLine();
+		
+//		new Line(new Coord(20,20),new Coord(50,20)).plot(pc);
+//		new Line(new Coord(50,20),new Coord(50,50)).plot(pc);
+//		pc.penDown();
+//		pc.penUp();
+//		pc.penDown();
+//		pc.penUp();
 	}
 
 }
