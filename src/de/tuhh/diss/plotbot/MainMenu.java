@@ -9,13 +9,20 @@ import lejos.nxt.LCD;
 import lejos.util.Delay;
 import lejos.util.TextMenu;
 
+/**
+ * Class MainMenu provides the menu interface for users
+ * 
+ * @author Sebastian, Salvador, Iqbal Hafizi
+ *
+ */
 public class MainMenu {
 
 	private static final String[] ITEMS_MENU = { "Calibration", "Triangle", "Ship", "Exit" };
 	private static final String TITLE_MENU = "Choose Shape to draw:";
 	private TextMenu lcdMenu;
 	private static PlotbotControl pc = new PlotbotControl();
-private int width,height;
+	private int width, height;
+
 	/**
 	 * Creates a new MainMenu object.
 	 */
@@ -23,6 +30,10 @@ private int width,height;
 		lcdMenu = new TextMenu(ITEMS_MENU, 1, TITLE_MENU);
 	}
 
+	/**
+	 * Asks user to select an option from menu then based on user selection it draws
+	 * a triangle or ship or calibrate the robot
+	 */
 	public void start() {
 		int selection = -1;
 		while (selection < 3) {
@@ -38,13 +49,13 @@ private int width,height;
 				toDraw.plot(pc);
 				break;
 			case 1:
-				 width=selectAmount("Triangle", "Height");
-				 height=selectAmount("Triangle", "Width");
-				toDraw = new Triangle(width,height);
+				width = selectAmount("Triangle", "Height");
+				height = selectAmount("Triangle", "Width");
+				toDraw = new Triangle(width, height);
 				toDraw.plot(pc);
 				break;
 			case 2:
-				 width=selectAmount("Ship", "Width");
+				width = selectAmount("Ship", "Width");
 				toDraw = new Ship(width);
 				break;
 			case 3:
@@ -66,28 +77,34 @@ private int width,height;
 		// }
 
 	}
-
-	public int selectAmount(String title,String subTitle) {
-		int selection=0;
+/**
+ * Method selectAmount to restrict the size to a maximum widht of 66 and height of 230
+ * @param string title
+ * 			name of the object to draw
+ * @param subTitle
+ * 			define width or height of the object
+ */
+	public int selectAmount(String title, String subTitle) {
+		int selection = 0;
 		LCD.clearDisplay();
 		LCD.drawString(title, 0, 0);
-		LCD.drawString(subTitle+": ", 0, 1);	
-		while(Button.ENTER.isUp()){
+		LCD.drawString(subTitle + ": ", 0, 1);
+		while (Button.ENTER.isUp()) {
 			LCD.drawInt(selection, 0, 3);
-			while(Button.RIGHT.isDown()){
+			while (Button.RIGHT.isDown()) {
 				selection++;
-				if(subTitle.equalsIgnoreCase("Widht")&&selection>=61){
-					selection=66;
+				if (subTitle.equalsIgnoreCase("Widht") && selection >= 61) {
+					selection = 66;
 				}
-				if(subTitle.equalsIgnoreCase("Height")&&selection>=230){
-					selection=230;
+				if (subTitle.equalsIgnoreCase("Height") && selection >= 230) {
+					selection = 230;
 				}
 				Delay.msDelay(500);
 			}
-			while(Button.LEFT.isDown()){
+			while (Button.LEFT.isDown()) {
 				selection--;
-				if(selection<=0){
-					selection=0;
+				if (selection <= 0) {
+					selection = 0;
 				}
 				Delay.msDelay(500);
 			}
