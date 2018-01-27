@@ -18,7 +18,7 @@ public class Ship implements Plottable {
 	public Ship(int width) {
 		this.width = width;
 	}
-<<<<<<< HEAD
+
 	public void plot(PlotbotControl pc){
 		new Line(new Coord((width/3),UPPER_DRAWING_BOUNDARY),new Coord(0,-(width/2))).plot(pc);
 		new Line(new Coord((width*2/3),0)).plot(pc);
@@ -28,15 +28,6 @@ public class Ship implements Plottable {
 		new Line(new Coord(-(width*3/4),-(width/4)),new Coord((width/2),0)).plot(pc);
 		new Line(new Coord((width*1/4),(width*1/4))).plot(pc);
 		new Line(new Coord(-(width*3/4),-(width/4)),new Coord(-(width*1/4),(width*1/4))).plot(pc);
-=======
 
-	/**
-	 * Method plot draws a ship
-	 */
-	public void plot(PlotbotControl pc) {
-		new Line(new Coord(0, UPPER_DRAWING_BOUNDARY), new Coord(0, -(width / 2))).plot(pc);
-		new Line(new Coord((width * 2 / 3), 0)).plot(pc);
-		new Line(new Coord(-(width * 2 / 3), (width / 2))).plot(pc);
->>>>>>> 07987215194cf04e23a8b647908202b3235e8d9f
 	}
 }
