@@ -4,28 +4,58 @@ import de.tuhh.diss.plotbot.Coord;
 import de.tuhh.diss.plotbot.PlotbotControl;
 import lejos.util.Delay;
 
+/**
+ * Class Line implements Plottable Provides the funtionality to draw line at a
+ * given coordinate
+ * 
+ * @author Sebastian, Salvador, Iqbal Hafizi
+ *
+ */
 public class Line implements Plottable {
 	private Coord start = new Coord();
 	private Coord end = new Coord();
+
+	/**
+	 * Constructor sets the private data member
+	 * 
+	 * @param Coord
+	 *            end end of a line
+	 */
 
 	public Line(Coord end) {
 		this.start = new Coord(0, 0);
 		this.end = end;
 	}
 
+	/**
+	 * Constructor sets the private data members
+	 * 
+	 * @param Coord
+	 *            start star of the line
+	 * @param Coord
+	 *            end end of the line
+	 */
 	public Line(Coord start, Coord end) {
 		this.start = start;
 		this.end = end;
 	}
 
+	/**
+	 * Method to plot a line. either Horizontal or Vertical or with a given
+	 * slope m
+	 * 
+	 * @param PlotbotControl
+	 *            pc
+	 */
 	public void plot(PlotbotControl pc) {
 		if (end.pointX == 0) {
+			// draw a vertical line
 			pc.goToXy(start);
 			pc.penDown();
 			pc.goToXy(end);
 			pc.penUp();
 		} else {
-			// Horizontal (test)
+			// Horizontal line or diagnol
 			pc.goToXy(start);
 			pc.penDown();
 			double m = end.pointY / end.pointX;
