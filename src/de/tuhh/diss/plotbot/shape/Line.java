@@ -8,9 +8,8 @@ public class Line implements Plottable {
 	private Coord start = new Coord();
 	private Coord end = new Coord();
 
-
 	public Line(Coord end) {
-		this.start = new Coord(0,0);
+		this.start = new Coord(0, 0);
 		this.end = end;
 	}
 

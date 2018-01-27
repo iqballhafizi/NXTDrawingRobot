@@ -77,7 +77,7 @@ private int width,height;
 			while(Button.RIGHT.isDown()){
 				selection++;
 				if(subTitle.equalsIgnoreCase("Widht")&&selection>=61){
-					selection=66;
+					selection=61;
 				}
 				if(subTitle.equalsIgnoreCase("Height")&&selection>=230){
 					selection=230;
